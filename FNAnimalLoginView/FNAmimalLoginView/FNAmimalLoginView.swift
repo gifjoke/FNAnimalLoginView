@@ -10,15 +10,41 @@ import Foundation
 import UIKit
 
 class FNAmimalLoginView: UIView, UITextFieldDelegate {
-    var headImageView:UIImageView!
+    var mainColor:UIColor! {
+        get {
+            return self._mainColor
+        }
+        set {
+            self._mainColor = newValue
+            loginBtn.backgroundColor = newValue
+        }
+    }
     
-    var leftLittleArm:UIImageView!
-    var rightLittleArm:UIImageView!
-    var leftArm:UIImageView!
-    var rightArm:UIImageView!
+    var type:NSInteger! {
+        get {
+            return self._type
+        }
+        set {
+            self._type = newValue
+            
+            headImageView.image = UIImage.init(named: NSString.init(format: "head%d", type) as String)
+            updateState(isPassword)
+        }
+    }
     
-    var userTextField:UITextField!
-    var passwordTextField:UITextField!
+    private var _mainColor:UIColor!
+    private var _type:NSInteger!
+    private var headImageView:UIImageView!
+    private var leftLittleArm:UIImageView!
+    private var rightLittleArm:UIImageView!
+    private var leftArm:UIImageView!
+    private var rightArm:UIImageView!
+    private var leftEye:UIImageView!
+    private var rightEye:UIImageView!
+    private var userTextField:UITextField!
+    private var passwordTextField:UITextField!
+    private var loginBtn:UIButton!
+    private var isPassword:Bool! = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +58,7 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         headImageView.image = UIImage.init(named: "head0")
         self.addSubview(headImageView)
         
-        //long arms
+        //long arms for octopus
         leftArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(101), FNSizeFit(40), FNSizeFit(66)))
         leftArm.image = UIImage.init(named: "leftArm0")
         self.addSubview(leftArm)
@@ -40,6 +66,19 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         rightArm = UIImageView.init(frame: CGRectMake(FNSizeFit(218), FNSizeFit(101), FNSizeFit(40), FNSizeFit(66)))
         rightArm.image = UIImage.init(named: "rightArm0")
         self.addSubview(rightArm)
+        
+        //eyes for qq
+        leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
+        leftEye.image = UIImage.init(named: "leftEye")
+        leftEye.backgroundColor = UIColor.whiteColor()
+        leftEye.layer.cornerRadius = 5
+        headImageView.addSubview(leftEye)
+        
+        rightEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
+        rightEye.image = UIImage.init(named: "rightEye")
+        rightEye.backgroundColor = UIColor.whiteColor()
+        rightEye.layer.cornerRadius = 5
+        headImageView.addSubview(rightEye)
         
         //background color
         width = frame.size.width - FNSizeFit(12)
@@ -51,7 +90,7 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         footBackgroundView.backgroundColor = UIColor.init(red: 0xee/255.0, green: 0xee/255.0, blue: 0xee/255.0, alpha: 1)
         self.addSubview(footBackgroundView)
         
-        //little arms
+        //little arms for octopus
         leftLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
         leftLittleArm.image = UIImage.init(named: "littleArm0")
         self.addSubview(leftLittleArm)
@@ -94,15 +133,17 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         //forgot password
         let forgotBtn = UIButton.init(frame: CGRectMake(FNSizeFit(28), FNSizeFit(11), FNSizeFit(120), FNSizeFit(30)))
         forgotBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
+        forgotBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         forgotBtn.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         forgotBtn.setTitle("Forgot password?", forState: UIControlState.Normal)
         footBackgroundView.addSubview(forgotBtn)
         
         //login
-        let loginBtn = UIButton.init(frame: CGRectMake(FNSizeFit(200), FNSizeFit(14), 60, 30))
+        loginBtn = UIButton.init(frame: CGRectMake(FNSizeFit(200), FNSizeFit(14), FNSizeFit(60), FNSizeFit(30)))
         loginBtn.backgroundColor = UIColor.init(red: 23/255.0, green: 128/255.0, blue: 161/255.0, alpha: 1)
         loginBtn.setTitle("Login", forState: UIControlState.Normal)
         loginBtn.titleLabel?.font = UIFont.systemFontOfSize(15)
+        loginBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         footBackgroundView.addSubview(loginBtn)
         
     }
@@ -116,10 +157,33 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        updateArms(textField == passwordTextField)
+        isPassword = (textField == passwordTextField)
+        updateState(isPassword)
     }
     
-    func updateArms(passwordEditing:Bool) {
+    func updateState(passwordEditing:Bool) {
+        switch type {
+        case 0:
+            updateArmsOfOctopus(passwordEditing)
+            break
+        case 1:
+            updateEyesOfQQ(passwordEditing)
+            break
+        default:
+            break
+        }
+        
+    }
+    
+    func updateArmsOfOctopus(passwordEditing:Bool) {
+        leftArm.removeFromSuperview()
+        rightArm.removeFromSuperview()
+        if nil == leftLittleArm {
+            leftLittleArm = UIImageView.init()
+            rightLittleArm = UIImageView.init()
+            leftArm = UIImageView.init()
+            rightArm = UIImageView.init()
+        }
         if passwordEditing {
             UIView.animateWithDuration(1, animations: {
                 self.leftLittleArm.frame = CGRectMake(self.leftLittleArm.frame.origin.x + self.FNSizeFit(80), self.leftLittleArm.frame.origin.y, 0, 0);
@@ -137,6 +201,34 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
                 self.rightArm.frame = CGRectMake(self.FNSizeFit(218), self.FNSizeFit(101), self.FNSizeFit(40), self.FNSizeFit(66))
                 self.leftArm.frame = CGRectMake(self.FNSizeFit(45), self.FNSizeFit(101), self.FNSizeFit(40), self.FNSizeFit(66))
             })
+        }
+    }
+    
+    func updateEyesOfQQ(passwordEditing:Bool) {
+        leftArm.removeFromSuperview()
+        rightArm.removeFromSuperview()
+        leftLittleArm.removeFromSuperview()
+        rightLittleArm.removeFromSuperview()
+        
+        if nil == leftEye {
+            leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
+            leftEye.backgroundColor = UIColor.whiteColor()
+            leftEye.layer.cornerRadius = 5
+            headImageView.addSubview(leftEye)
+            
+            rightEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
+            rightEye.backgroundColor = UIColor.whiteColor()
+            rightEye.layer.cornerRadius = 5
+            headImageView.addSubview(rightEye)
+        }
+        
+        if (isPassword == true) {
+            leftEye.image = UIImage.init(named: "leftEyeClose")
+            rightEye.image = UIImage.init(named: "rightEyeClose")
+        }
+        else {
+            leftEye.image = UIImage.init(named: "leftEye")
+            rightEye.image = UIImage.init(named: "rightEye")
         }
     }
     
