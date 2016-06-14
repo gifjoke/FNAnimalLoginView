@@ -176,8 +176,8 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
     }
     
     func updateArmsOfOctopus(passwordEditing:Bool) {
-        leftArm.removeFromSuperview()
-        rightArm.removeFromSuperview()
+        leftEye.removeFromSuperview()
+        rightEye.removeFromSuperview()
         if nil == leftLittleArm {
             leftLittleArm = UIImageView.init()
             rightLittleArm = UIImageView.init()
