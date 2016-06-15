@@ -13,6 +13,3 @@ Swift - Animation - Daily NO.03.
 ![Animating](readme_images/gif0.gif)
 ![Animating](readme_images/gif1.gif)
 ![Animating](readme_images/gif2.gif)
-
-###来源：
-没有明确的OC原版
