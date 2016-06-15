@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         background.backgroundColor = UIColor.init(red: 9/255.0, green: 141/255.0, blue: 182/255.0, alpha: 1)
         view.addSubview(background)
         
-        let loginView = FNAmimalLoginView.init(frame: CGRectMake((view.frame.size.width-300)/2, 150, 300, 300))
-        loginView.type = 1
+        let loginView = FNAnimalLoginView.init(frame: CGRectMake((view.frame.size.width-300)/2, 150, 300, 300))
+        loginView.type = 2
         view.addSubview(loginView)
     }
 

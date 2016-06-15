@@ -1,5 +1,5 @@
 //
-//  FNAmimalLoginView.swift
+//  FNAnimalLoginView.swift
 //  FNAnimalLoginView
 //
 //  Created by Fnoz on 16/6/4.
@@ -9,23 +9,23 @@
 import Foundation
 import UIKit
 
-class FNAmimalLoginView: UIView, UITextFieldDelegate {
+class FNAnimalLoginView: UIView, UITextFieldDelegate {
     var mainColor:UIColor! {
         get {
-            return self._mainColor
+            return _mainColor
         }
         set {
-            self._mainColor = newValue
+            _mainColor = newValue
             loginBtn.backgroundColor = newValue
         }
     }
     
     var type:NSInteger! {
         get {
-            return self._type
+            return _type
         }
         set {
-            self._type = newValue
+            _type = newValue
             
             headImageView.image = UIImage.init(named: NSString.init(format: "head%d", type) as String)
             updateState(isPassword)
@@ -34,13 +34,22 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
     
     private var _mainColor:UIColor!
     private var _type:NSInteger!
+    
+    //octopus
     private var headImageView:UIImageView!
     private var leftLittleArm:UIImageView!
     private var rightLittleArm:UIImageView!
     private var leftArm:UIImageView!
     private var rightArm:UIImageView!
+    
+    //qq
     private var leftEye:UIView!
     private var rightEye:UIView!
+    
+    //photo frame
+    private var photoFrameView:FNALPhotoFrameView!
+    
+    //login
     private var userTextField:UITextField!
     private var passwordTextField:UITextField!
     private var loginBtn:UIButton!
@@ -49,6 +58,7 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         initView(frame)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDidHide:"), name:UIKeyboardDidHideNotification, object: nil)
     }
     
     func initView(frame: CGRect) {
@@ -78,24 +88,29 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         rightEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
         headImageView.addSubview(rightEye)
         
-        //background color
         width = frame.size.width - FNSizeFit(12)
+        //photo frame
+        photoFrameView = FNALPhotoFrameView.init(frame: CGRectMake(FNSizeFit(6), FNSizeFit(0), width, FNSizeFit(101)))
+        photoFrameView.image = UIImage.init(named: "photo")
+        addSubview(photoFrameView)
+        
+        //background color
         let backgroundView = UIView.init(frame: CGRectMake(FNSizeFit(6), FNSizeFit(101), width, FNSizeFit(137)))
         backgroundView.backgroundColor = UIColor.whiteColor()
-        self.addSubview(backgroundView)
+        addSubview(backgroundView)
         
         let footBackgroundView = UIView.init(frame: CGRectMake(FNSizeFit(6), FNSizeFit(238), width, FNSizeFit(53)))
         footBackgroundView.backgroundColor = UIColor.init(red: 0xee/255.0, green: 0xee/255.0, blue: 0xee/255.0, alpha: 1)
-        self.addSubview(footBackgroundView)
+        addSubview(footBackgroundView)
         
         //little arms for octopus
         leftLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
         leftLittleArm.image = UIImage.init(named: "littleArm0")
-        self.addSubview(leftLittleArm)
+        addSubview(leftLittleArm)
         
         rightLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(218), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
         rightLittleArm.image = UIImage.init(named: "littleArm0")
-        self.addSubview(rightLittleArm)
+        addSubview(rightLittleArm)
         
         //textField
         userTextField = UITextField.init(frame: CGRectMake(FNSizeFit(28), FNSizeFit(25), backgroundView.frame.size.width - FNSizeFit(28) * 2, FNSizeFit(42)))
@@ -167,6 +182,9 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         case 1:
             updateEyesOfQQ(passwordEditing)
             break
+        case 2:
+            updatePhotoFrame(passwordEditing)
+            break
         default:
             break
         }
@@ -176,6 +194,7 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
     func updateArmsOfOctopus(passwordEditing:Bool) {
         leftEye.removeFromSuperview()
         rightEye.removeFromSuperview()
+        photoFrameView.removeFromSuperview()
         if nil == leftLittleArm {
             leftLittleArm = UIImageView.init()
             rightLittleArm = UIImageView.init()
@@ -207,6 +226,7 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         rightArm.removeFromSuperview()
         leftLittleArm.removeFromSuperview()
         rightLittleArm.removeFromSuperview()
+        photoFrameView.removeFromSuperview()
         
         if nil == leftEye {
             leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
@@ -234,6 +254,41 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
                 self.rightEye.frame = CGRectMake(self.FNSizeFit(220*0.54), self.FNSizeFit(220*0.21), self.FNSizeFit(220*0.044), self.FNSizeFit(220*0.044))
             })
         }
+    }
+    
+    func updatePhotoFrame(passwordEditing:Bool) {
+        leftArm.removeFromSuperview()
+        rightArm.removeFromSuperview()
+        leftLittleArm.removeFromSuperview()
+        rightLittleArm.removeFromSuperview()
+        leftEye.removeFromSuperview()
+        rightEye.removeFromSuperview()
+        
+        if nil == leftEye {
+            leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
+            leftEye.backgroundColor = UIColor.whiteColor()
+            leftEye.layer.cornerRadius = 5
+            headImageView.addSubview(leftEye)
+            
+            rightEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
+            rightEye.backgroundColor = UIColor.whiteColor()
+            rightEye.layer.cornerRadius = 5
+            headImageView.addSubview(rightEye)
+        }
+        
+        if (isPassword == true) {
+            //close eye
+            photoFrameView.blurEffect = 1.0
+        }
+        else {
+            //open eye
+            photoFrameView.blurEffect = 0
+        }
+    }
+    
+    func keyboardDidHide(notification: NSNotification) {
+        isPassword = false
+        updateState(false)
     }
     
     required init?(coder aDecoder: NSCoder) {

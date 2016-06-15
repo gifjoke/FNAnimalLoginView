@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106606231D11B708007C60D2 /* FNALPhotoFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106606221D11B708007C60D2 /* FNALPhotoFrameView.swift */; };
+		106606271D11CA43007C60D2 /* FNALBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106606261D11CA43007C60D2 /* FNALBlurView.swift */; };
 		1072FA441D02FAD900779A2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072FA431D02FAD900779A2C /* AppDelegate.swift */; };
 		1072FA461D02FAD900779A2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072FA451D02FAD900779A2C /* ViewController.swift */; };
 		1072FA491D02FAD900779A2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1072FA471D02FAD900779A2C /* Main.storyboard */; };
 		1072FA4B1D02FAD900779A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1072FA4A1D02FAD900779A2C /* Assets.xcassets */; };
 		1072FA4E1D02FAD900779A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1072FA4C1D02FAD900779A2C /* LaunchScreen.storyboard */; };
-		1072FA571D02FB1300779A2C /* FNAmimalLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072FA561D02FB1300779A2C /* FNAmimalLoginView.swift */; };
+		1072FA571D02FB1300779A2C /* FNAnimalLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072FA561D02FB1300779A2C /* FNAnimalLoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		106606221D11B708007C60D2 /* FNALPhotoFrameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNALPhotoFrameView.swift; sourceTree = "<group>"; };
+		106606261D11CA43007C60D2 /* FNALBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNALBlurView.swift; sourceTree = "<group>"; };
 		1072FA401D02FAD900779A2C /* FNAnimalLoginView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FNAnimalLoginView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1072FA431D02FAD900779A2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1072FA451D02FAD900779A2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,7 +27,7 @@
 		1072FA4A1D02FAD900779A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1072FA4D1D02FAD900779A2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1072FA4F1D02FAD900779A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1072FA561D02FB1300779A2C /* FNAmimalLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNAmimalLoginView.swift; sourceTree = "<group>"; };
+		1072FA561D02FB1300779A2C /* FNAnimalLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FNAnimalLoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +74,9 @@
 		1072FA551D02FAFE00779A2C /* FNAmimalLoginView */ = {
 			isa = PBXGroup;
 			children = (
-				1072FA561D02FB1300779A2C /* FNAmimalLoginView.swift */,
+				106606261D11CA43007C60D2 /* FNALBlurView.swift */,
+				1072FA561D02FB1300779A2C /* FNAnimalLoginView.swift */,
+				106606221D11B708007C60D2 /* FNALPhotoFrameView.swift */,
 			);
 			path = FNAmimalLoginView;
 			sourceTree = "<group>";
@@ -146,9 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				106606271D11CA43007C60D2 /* FNALBlurView.swift in Sources */,
+				106606231D11B708007C60D2 /* FNALPhotoFrameView.swift in Sources */,
 				1072FA461D02FAD900779A2C /* ViewController.swift in Sources */,
 				1072FA441D02FAD900779A2C /* AppDelegate.swift in Sources */,
-				1072FA571D02FB1300779A2C /* FNAmimalLoginView.swift in Sources */,
+				1072FA571D02FB1300779A2C /* FNAnimalLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +306,7 @@
 				1072FA541D02FAD900779A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
