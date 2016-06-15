@@ -39,8 +39,8 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
     private var rightLittleArm:UIImageView!
     private var leftArm:UIImageView!
     private var rightArm:UIImageView!
-    private var leftEye:UIImageView!
-    private var rightEye:UIImageView!
+    private var leftEye:UIView!
+    private var rightEye:UIView!
     private var userTextField:UITextField!
     private var passwordTextField:UITextField!
     private var loginBtn:UIButton!
@@ -68,16 +68,14 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         self.addSubview(rightArm)
         
         //eyes for qq
-        leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
-        leftEye.image = UIImage.init(named: "leftEye")
-        leftEye.backgroundColor = UIColor.whiteColor()
-        leftEye.layer.cornerRadius = 5
+        leftEye = UIView.init(frame: CGRectMake(FNSizeFit(220*0.42), FNSizeFit(220*0.21), FNSizeFit(220*0.044), FNSizeFit(220*0.044)))
+        leftEye.backgroundColor = UIColor.blackColor()
+        leftEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
         headImageView.addSubview(leftEye)
         
-        rightEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
-        rightEye.image = UIImage.init(named: "rightEye")
-        rightEye.backgroundColor = UIColor.whiteColor()
-        rightEye.layer.cornerRadius = 5
+        rightEye = UIView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.21), FNSizeFit(220*0.044), FNSizeFit(220*0.044)))
+        rightEye.backgroundColor = UIColor.blackColor()
+        rightEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
         headImageView.addSubview(rightEye)
         
         //background color
@@ -186,11 +184,11 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         }
         if passwordEditing {
             UIView.animateWithDuration(1, animations: {
-                self.leftLittleArm.frame = CGRectMake(self.leftLittleArm.frame.origin.x + self.FNSizeFit(80), self.leftLittleArm.frame.origin.y, 0, 0);
-                self.rightLittleArm.frame = CGRectMake(self.rightLittleArm.frame.origin.x - self.FNSizeFit(40), self.rightLittleArm.frame.origin.y, 0, 0);
+                self.leftLittleArm.frame = CGRectMake(self.FNSizeFit(80) + self.FNSizeFit(40), self.leftLittleArm.frame.origin.y, 0, 0);
+                self.rightLittleArm.frame = CGRectMake(self.FNSizeFit(218) - self.FNSizeFit(40), self.rightLittleArm.frame.origin.y, 0, 0);
                 
-                self.rightArm.frame = CGRectMake(self.FNSizeFit(218) - self.FNSizeFit(55), self.rightArm.frame.origin.y-self.FNSizeFit(40), self.FNSizeFit(40), self.FNSizeFit(66));
-                self.leftArm.frame = CGRectMake(self.FNSizeFit(45) + self.FNSizeFit(60), self.leftArm.frame.origin.y-self.FNSizeFit(40), self.FNSizeFit(40), self.FNSizeFit(66));
+                self.rightArm.frame = CGRectMake(self.FNSizeFit(218) - self.FNSizeFit(55), self.FNSizeFit(101) - self.FNSizeFit(40), self.FNSizeFit(40), self.FNSizeFit(66));
+                self.leftArm.frame = CGRectMake(self.FNSizeFit(45) + self.FNSizeFit(60), self.FNSizeFit(101)-self.FNSizeFit(40), self.FNSizeFit(40), self.FNSizeFit(66));
             })
         }
         else {
@@ -223,12 +221,18 @@ class FNAmimalLoginView: UIView, UITextFieldDelegate {
         }
         
         if (isPassword == true) {
-            leftEye.image = UIImage.init(named: "leftEyeClose")
-            rightEye.image = UIImage.init(named: "rightEyeClose")
+            //close eye
+            UIView.animateWithDuration(1, animations: { 
+                self.leftEye.frame = CGRectMake(self.FNSizeFit(220*0.41), self.FNSizeFit(220*0.22), self.FNSizeFit(220*0.064), self.FNSizeFit(220*0.064)/5)
+                self.rightEye.frame = CGRectMake(self.FNSizeFit(220*0.53), self.FNSizeFit(220*0.22), self.FNSizeFit(220*0.064), self.FNSizeFit(220*0.064)/5)
+            })
         }
         else {
-            leftEye.image = UIImage.init(named: "leftEye")
-            rightEye.image = UIImage.init(named: "rightEye")
+            //open eye
+            UIView.animateWithDuration(1, animations: { 
+                self.leftEye.frame = CGRectMake(self.FNSizeFit(220*0.42), self.FNSizeFit(220*0.21), self.FNSizeFit(220*0.044), self.FNSizeFit(220*0.044))
+                self.rightEye.frame = CGRectMake(self.FNSizeFit(220*0.54), self.FNSizeFit(220*0.21), self.FNSizeFit(220*0.044), self.FNSizeFit(220*0.044))
+            })
         }
     }
     

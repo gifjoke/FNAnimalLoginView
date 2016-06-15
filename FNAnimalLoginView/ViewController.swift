@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         view.addSubview(background)
         
         let loginView = FNAmimalLoginView.init(frame: CGRectMake((view.frame.size.width-300)/2, 150, 300, 300))
-        loginView.type = 0
+        loginView.type = 1
         view.addSubview(loginView)
     }
 
