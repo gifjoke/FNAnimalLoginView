@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         view.addSubview(background)
         
         loginView = FNAnimalLoginView.init(frame: CGRectMake((view.frame.size.width-300)/2, 150, 300, 300))
-        loginView.type = 2
+        loginView.type = FNAnimalLoginViewStyle.Octopus
         view.addSubview(loginView)
         
         let titleArray = ["octopus", "qq", "photo"]
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     }
     
     func buttonClicked(button:UIButton) {
-        loginView.type = button.tag - 100
+        loginView.type = FNAnimalLoginViewStyle(rawValue: button.tag - 100)
     }
 
     override func didReceiveMemoryWarning() {

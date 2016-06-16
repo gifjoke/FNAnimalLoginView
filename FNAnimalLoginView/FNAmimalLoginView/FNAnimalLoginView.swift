@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum FNAnimalLoginViewStyle:NSInteger{
+    case Octopus = 0
+    case QQ = 1
+    case PhotoFrame = 2
+}
+
 class FNAnimalLoginView: UIView, UITextFieldDelegate {
     var mainColor:UIColor! {
         get {
@@ -20,20 +26,19 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         }
     }
     
-    var type:NSInteger! {
+    var type:FNAnimalLoginViewStyle! {
         get {
             return _type
         }
         set {
             _type = newValue
-            
-            headImageView.image = UIImage.init(named: NSString.init(format: "head%d", type) as String)
+            headImageView.image = UIImage.init(named: NSString.init(format: "head%d", newValue.rawValue) as String)
             updateState(isPassword)
         }
     }
     
     private var _mainColor:UIColor!
-    private var _type:NSInteger!
+    private var _type:FNAnimalLoginViewStyle!
     
     //octopus
     private var headImageView:UIImageView!
@@ -191,7 +196,7 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
     }
     
     func updateState(passwordEditing:Bool) {
-        switch type {
+        switch type.rawValue {
         case 0:
             updateArmsOfOctopus(passwordEditing)
             break
