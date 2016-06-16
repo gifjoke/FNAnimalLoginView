@@ -207,13 +207,18 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
     }
     
     func updateArmsOfOctopus(passwordEditing:Bool) {
-        leftEye.removeFromSuperview()
-        rightEye.removeFromSuperview()
-        photoFrameView.removeFromSuperview()
+        leftEye.hidden = true
+        rightEye.hidden = true
+        photoFrameView.hidden = true
         if nil == leftLittleArm {
             initLittleArmsForOctopus()
             initLongArmsForOctopus()
         }
+        leftArm.hidden = false
+        leftLittleArm.hidden = false
+        rightArm.hidden = false
+        rightLittleArm.hidden = false
+        
         if passwordEditing {
             UIView.animateWithDuration(1, animations: {
                 self.leftLittleArm.frame = CGRectMake(self.FNSizeFit(80) + self.FNSizeFit(40), self.leftLittleArm.frame.origin.y, 0, 0);
@@ -235,15 +240,17 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
     }
     
     func updateEyesOfQQ(passwordEditing:Bool) {
-        leftArm.removeFromSuperview()
-        rightArm.removeFromSuperview()
-        leftLittleArm.removeFromSuperview()
-        rightLittleArm.removeFromSuperview()
-        photoFrameView.removeFromSuperview()
+        leftArm.hidden = true
+        rightArm.hidden = true
+        leftLittleArm.hidden = true
+        rightLittleArm.hidden = true
+        photoFrameView.hidden = true
         
         if nil == leftEye {
             initEyesForQQ()
         }
+        leftEye.hidden = false
+        rightEye.hidden = false
         
         if (isPassword == true) {
             //close eye
@@ -262,16 +269,17 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
     }
     
     func updatePhotoFrame(passwordEditing:Bool) {
-        leftArm.removeFromSuperview()
-        rightArm.removeFromSuperview()
-        leftLittleArm.removeFromSuperview()
-        rightLittleArm.removeFromSuperview()
-        leftEye.removeFromSuperview()
-        rightEye.removeFromSuperview()
+        leftArm.hidden = true
+        rightArm.hidden = true
+        leftLittleArm.hidden = true
+        rightLittleArm.hidden = true
+        leftEye.hidden = true
+        rightEye.hidden = true
         
         if nil == photoFrameView {
             initPhotoFrame()
         }
+        photoFrameView.hidden = false
         
         if (isPassword == true) {
             photoFrameView.blurEffect = 1.0
