@@ -5,7 +5,7 @@ Swift登陆界面：猫头鹰蒙眼、企鹅闭眼、相片毛玻璃.
 
 ```
 	let loginView = FNAnimalLoginView.init(frame: CGRectMake((view.frame.size.width-300)/2, 150, 300, 300))
-	loginView.type = 2
+	loginView.type = FNAnimalLoginViewStyle.Octopus
 	view.addSubview(loginView)
 ```
 
