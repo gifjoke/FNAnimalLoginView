@@ -1,5 +1,5 @@
 # FNAnimalLoginView
-Swift - Animation - Daily NO.03.
+Swift登陆界面：猫头鹰蒙眼、企鹅闭眼、相片毛玻璃.
 
 ###基础使用Demo：
 
