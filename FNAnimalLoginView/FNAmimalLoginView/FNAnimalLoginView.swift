@@ -69,32 +69,16 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         self.addSubview(headImageView)
         
         //long arms for octopus
-        leftArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(101), FNSizeFit(40), FNSizeFit(66)))
-        leftArm.image = UIImage.init(named: "leftArm0")
-        self.addSubview(leftArm)
-        
-        rightArm = UIImageView.init(frame: CGRectMake(FNSizeFit(218), FNSizeFit(101), FNSizeFit(40), FNSizeFit(66)))
-        rightArm.image = UIImage.init(named: "rightArm0")
-        self.addSubview(rightArm)
+        initLongArmsForOctopus()
         
         //eyes for qq
-        leftEye = UIView.init(frame: CGRectMake(FNSizeFit(220*0.42), FNSizeFit(220*0.21), FNSizeFit(220*0.044), FNSizeFit(220*0.044)))
-        leftEye.backgroundColor = UIColor.blackColor()
-        leftEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
-        headImageView.addSubview(leftEye)
+        initEyesForQQ()
         
-        rightEye = UIView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.21), FNSizeFit(220*0.044), FNSizeFit(220*0.044)))
-        rightEye.backgroundColor = UIColor.blackColor()
-        rightEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
-        headImageView.addSubview(rightEye)
-        
-        width = frame.size.width - FNSizeFit(12)
         //photo frame
-        photoFrameView = FNALPhotoFrameView.init(frame: CGRectMake(FNSizeFit(6), FNSizeFit(0), width, FNSizeFit(101)))
-        photoFrameView.image = UIImage.init(named: "photo")
-        addSubview(photoFrameView)
+        initPhotoFrame()
         
         //background color
+        width = frame.size.width - FNSizeFit(12)
         let backgroundView = UIView.init(frame: CGRectMake(FNSizeFit(6), FNSizeFit(101), width, FNSizeFit(137)))
         backgroundView.backgroundColor = UIColor.whiteColor()
         addSubview(backgroundView)
@@ -104,13 +88,7 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         addSubview(footBackgroundView)
         
         //little arms for octopus
-        leftLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
-        leftLittleArm.image = UIImage.init(named: "littleArm0")
-        addSubview(leftLittleArm)
-        
-        rightLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(218), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
-        rightLittleArm.image = UIImage.init(named: "littleArm0")
-        addSubview(rightLittleArm)
+        initLittleArmsForOctopus()
         
         //textField
         userTextField = UITextField.init(frame: CGRectMake(FNSizeFit(28), FNSizeFit(25), backgroundView.frame.size.width - FNSizeFit(28) * 2, FNSizeFit(42)))
@@ -161,6 +139,44 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         
     }
     
+    func initLongArmsForOctopus() {
+        leftArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(101), FNSizeFit(40), FNSizeFit(66)))
+        leftArm.image = UIImage.init(named: "leftArm0")
+        self.addSubview(leftArm)
+        
+        rightArm = UIImageView.init(frame: CGRectMake(FNSizeFit(218), FNSizeFit(101), FNSizeFit(40), FNSizeFit(66)))
+        rightArm.image = UIImage.init(named: "rightArm0")
+        self.addSubview(rightArm)
+    }
+    
+    func initLittleArmsForOctopus() {
+        leftLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(45), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
+        leftLittleArm.image = UIImage.init(named: "littleArm0")
+        addSubview(leftLittleArm)
+        
+        rightLittleArm = UIImageView.init(frame: CGRectMake(FNSizeFit(218), FNSizeFit(80), FNSizeFit(40), FNSizeFit(40)))
+        rightLittleArm.image = UIImage.init(named: "littleArm0")
+        addSubview(rightLittleArm)
+    }
+    
+    func initEyesForQQ() {
+        leftEye = UIView.init(frame: CGRectMake(FNSizeFit(220*0.42), FNSizeFit(220*0.21), FNSizeFit(220*0.044), FNSizeFit(220*0.044)))
+        leftEye.backgroundColor = UIColor.blackColor()
+        leftEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
+        headImageView.addSubview(leftEye)
+        
+        rightEye = UIView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.21), FNSizeFit(220*0.044), FNSizeFit(220*0.044)))
+        rightEye.backgroundColor = UIColor.blackColor()
+        rightEye.layer.cornerRadius = FNSizeFit(220*0.044)/2
+        headImageView.addSubview(rightEye)
+    }
+    
+    func initPhotoFrame() {
+        photoFrameView = FNALPhotoFrameView.init(frame: CGRectMake(FNSizeFit(6), FNSizeFit(0), frame.size.width - FNSizeFit(12), FNSizeFit(101)))
+        photoFrameView.image = UIImage.init(named: "photo")
+        addSubview(photoFrameView)
+    }
+    
     func FNSizeFit(a:CGFloat) -> CGFloat {
         return self.frame.size.width * a / 300.0
     }
@@ -188,7 +204,6 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         default:
             break
         }
-        
     }
     
     func updateArmsOfOctopus(passwordEditing:Bool) {
@@ -196,10 +211,8 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         rightEye.removeFromSuperview()
         photoFrameView.removeFromSuperview()
         if nil == leftLittleArm {
-            leftLittleArm = UIImageView.init()
-            rightLittleArm = UIImageView.init()
-            leftArm = UIImageView.init()
-            rightArm = UIImageView.init()
+            initLittleArmsForOctopus()
+            initLongArmsForOctopus()
         }
         if passwordEditing {
             UIView.animateWithDuration(1, animations: {
@@ -229,15 +242,7 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         photoFrameView.removeFromSuperview()
         
         if nil == leftEye {
-            leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
-            leftEye.backgroundColor = UIColor.whiteColor()
-            leftEye.layer.cornerRadius = 5
-            headImageView.addSubview(leftEye)
-            
-            rightEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
-            rightEye.backgroundColor = UIColor.whiteColor()
-            rightEye.layer.cornerRadius = 5
-            headImageView.addSubview(rightEye)
+            initEyesForQQ()
         }
         
         if (isPassword == true) {
@@ -264,24 +269,14 @@ class FNAnimalLoginView: UIView, UITextFieldDelegate {
         leftEye.removeFromSuperview()
         rightEye.removeFromSuperview()
         
-        if nil == leftEye {
-            leftEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.41), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
-            leftEye.backgroundColor = UIColor.whiteColor()
-            leftEye.layer.cornerRadius = 5
-            headImageView.addSubview(leftEye)
-            
-            rightEye = UIImageView.init(frame: CGRectMake(FNSizeFit(220*0.53), FNSizeFit(220*0.2), FNSizeFit(220*0.064), FNSizeFit(220*0.064)))
-            rightEye.backgroundColor = UIColor.whiteColor()
-            rightEye.layer.cornerRadius = 5
-            headImageView.addSubview(rightEye)
+        if nil == photoFrameView {
+            initPhotoFrame()
         }
         
         if (isPassword == true) {
-            //close eye
             photoFrameView.blurEffect = 1.0
         }
         else {
-            //open eye
             photoFrameView.blurEffect = 0
         }
     }
